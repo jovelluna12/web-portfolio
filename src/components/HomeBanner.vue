@@ -1,7 +1,7 @@
 <template>
     <div class="text-center space-y-4">
-      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight">Jovel Christer</h1>
-      <h3 class="text-xl sm:text-2xl font-medium text-gray-600">Web Developer</h3>
+      <h1 class="text-4xl sm:text-5xl site-hero-title">Jovel Christer</h1>
+      <h3 class="text-lg sm:text-xl font-medium text-gray-600">Web Developer</h3>
       <h4 class="text-base sm:text-lg text-gray-500 max-w-xl mx-auto">
         Specializing in Responsive Design and Intuitive Web Experiences
       </h4>

@@ -1,20 +1,14 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import NavBar from './components/NavBar.vue'
-import AppFooter from './components/Footer.vue'
+import Layout from './components/Layout.vue'
 </script>
 
 <template>
-  <NavBar />
-  <main>
+  <Layout>
     <RouterView />
-  </main>
-  <AppFooter />
+  </Layout>
 </template>
 
 <style lang="css" scoped>
-main {
-  min-height: calc(100vh - 160px);
-}
-
+/* Layout spacing controlled by Layout.vue */
 </style>

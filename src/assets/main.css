@@ -24,3 +24,11 @@ a,
 .green { color: #0b6; }
 .projects-grid { display: grid; gap: 16px; }
 
+/* Jekyll-like container and article spacing */
+.hero { padding-top: 2rem; padding-bottom: 2rem }
+.content article, .content section { margin-bottom: 1.5rem }
+.site-title { font-size: 1.25rem; font-weight: 700 }
+.site-hero-title { font-family: Georgia, 'Times New Roman', serif; font-weight: 600 }
+.prose img { border-radius: 6px; }
+
+
