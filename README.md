@@ -27,3 +27,16 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## Developer Portfolio
+
+This repo is a developer portfolio template built with Vue 3 and Vite. It includes:
+
+- Home (with featured projects)
+- Projects (list of projects)
+- About
+- Blog (placeholder)
+- Contact (simple client-side form)
+
+Run the dev server and open http://localhost:5173 (or the port Vite reports).
+
