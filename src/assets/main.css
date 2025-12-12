@@ -30,5 +30,21 @@ a,
 .site-title { font-size: 1.25rem; font-weight: 700 }
 .site-hero-title { font-family: Georgia, 'Times New Roman', serif; font-weight: 600 }
 .prose img { border-radius: 6px; }
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .container { margin: 1rem auto; grid-template-columns: 1fr 260px; gap: 20px }
+  .hero { padding-top: 1.5rem; padding-bottom: 1.5rem }
+}
+
+@media (max-width: 640px) {
+  .container { grid-template-columns: 1fr; padding: 0 1rem }
+  .site-title { font-size: 1rem }
+  .site-hero-title { font-size: 1.6rem }
+  .projects-grid { grid-template-columns: 1fr }
+  .max-w-6xl { padding: 0 12px }
+}
+
+/* Make ProjectCard images keep a pleasing aspect on small screens */
+.card img { height: auto; max-height: 240px; object-fit: cover }
 
 
