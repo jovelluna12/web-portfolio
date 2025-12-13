@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
 .site-nav { position: sticky; top: 0; z-index: 50; }
-.site-title { font-family: 'Space Grotesk', 'Inter', system-ui; font-size: 1.15rem; color: #111 }
+.site-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1.15rem; color: #111 }
 .nav-links { display: flex; gap: 16px; align-items: center }
 .nav-links a { color: #555; text-decoration: none; font-size: 0.95rem }
 .nav-links a.green { color: #0b6 }
