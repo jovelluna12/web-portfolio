@@ -12,7 +12,7 @@ const projects = [
     title: 'CMS Integration',
     description: 'CMS-driven marketing site using headless CMS and static generation.',
     tech: ['PHP', 'Laravel', 'API'],
-    link: 'https://example.com',
+    link: 'https://github.com/jovelluna12/jcl-dashboard',
     image: '',
   },
 ]
