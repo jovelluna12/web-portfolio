@@ -2,9 +2,9 @@ const projects = [
   {
     id: 'p1',
     title: 'Portfolio Website',
-    description: 'Personal portfolio built with Vue and Vite showcasing projects and blog.',
+    description: 'Personal portfolio featuring a classical, jekyll inspired design built with Vue and Vite showcasing projects and blog.',
     tech: ['Vue', 'Vite', 'CSS'],
-    link: 'https://example.com',
+    link: 'https://jovelluna12.github.io',
     image: '',
   },
   {
