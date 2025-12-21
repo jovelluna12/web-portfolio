@@ -9,14 +9,6 @@ const projects = [
   },
   {
     id: 'p2',
-    title: 'E-commerce Demo',
-    description: 'Small e-commerce prototype with cart and checkout flow.',
-    tech: ['JavaScript', 'Tailwind', 'Stripe'],
-    link: 'https://example.com',
-    image: '',
-  },
-  {
-    id: 'p3',
     title: 'CMS Integration',
     description: 'CMS-driven marketing site using headless CMS and static generation.',
     tech: ['PHP', 'Laravel', 'API'],
