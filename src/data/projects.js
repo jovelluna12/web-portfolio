@@ -15,6 +15,7 @@ const projects = [
     link: 'https://sample-restaurant-portfolio-yez2.vercel.app/',
     image: '',
   },
+
   {
     id: 'p3',
     title: 'Portfolio Website',
@@ -30,7 +31,7 @@ const projects = [
     tech: ['PHP', 'Laravel', 'API'],
     link: 'https://github.com/jovelluna12/jcl-dashboard',
     image: '',
-  },
+  }
 ]
 
 export default projects
