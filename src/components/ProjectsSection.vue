@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import projects from '../data/projects'
+import projects from '../data/projects.json'
 
 export default {
   name: 'ProjectsSection',

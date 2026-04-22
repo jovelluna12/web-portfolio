@@ -41,7 +41,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
         </div>
         <h3 class="empty-title">No posts yet</h3>
-        <p class="empty-description">Blog posts will appear here once added to the posts folder.</p>
+        <p class="empty-description">Blog posts will appear here once added.</p>
       </div>
       
       <!-- Post Modal -->
@@ -72,6 +72,7 @@
 
 <script>
 import { marked } from 'marked'
+import postsData from '../data/posts.json'
 
 export default {
   name: 'PostsSection',
@@ -86,59 +87,13 @@ export default {
   },
   methods: {
     loadPosts() {
-      // Use the updated Vite glob syntax with query parameter
-      const postFiles = import.meta.glob('../posts/*.md', { query: '?raw', import: 'default', eager: true })
-      
-      this.posts = Object.entries(postFiles).map(([path, content]) => {
-        const slug = path.replace('../posts/', '').replace('.md', '')
-        const { frontmatter, body } = this.parseFrontmatter(content)
-        
-        return {
-          slug,
-          title: frontmatter.title || this.formatSlugToTitle(slug),
-          date: frontmatter.date || null,
-          tags: frontmatter.tags || [],
-          excerpt: frontmatter.excerpt || body.slice(0, 150) + '...',
-          contentHtml: marked(body)
-        }
-      }).sort((a, b) => {
+      this.posts = postsData.map(post => ({
+        ...post,
+        contentHtml: marked(post.content || '')
+      })).sort((a, b) => {
         if (!a.date || !b.date) return 0
         return new Date(b.date) - new Date(a.date)
       })
-    },
-    parseFrontmatter(content) {
-      const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/
-      const match = content.match(frontmatterRegex)
-      
-      if (!match) {
-        return { frontmatter: {}, body: content }
-      }
-      
-      const frontmatterStr = match[1]
-      const body = match[2]
-      const frontmatter = {}
-      
-      frontmatterStr.split('\n').forEach(line => {
-        const [key, ...valueParts] = line.split(':')
-        if (key && valueParts.length) {
-          let value = valueParts.join(':').trim()
-          // Handle arrays
-          if (value.startsWith('[') && value.endsWith(']')) {
-            value = value.slice(1, -1).split(',').map(v => v.trim().replace(/['"]/g, ''))
-          } else {
-            value = value.replace(/['"]/g, '')
-          }
-          frontmatter[key.trim()] = value
-        }
-      })
-      
-      return { frontmatter, body }
-    },
-    formatSlugToTitle(slug) {
-      return slug
-        .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ')
     },
     formatDate(dateStr) {
       if (!dateStr) return ''
@@ -363,6 +318,19 @@ export default {
 
 .post-modal-body :deep(a) {
   color: var(--accent);
+}
+
+.post-modal-body :deep(pre) {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.post-modal-body :deep(code) {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
 }
 
 @media (max-width: 768px) {
