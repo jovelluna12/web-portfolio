@@ -2,10 +2,6 @@
   <section id="home" class="hero">
     <div class="hero-container">
       <div class="hero-content">
-        <div class="hero-badge animate-fade-in">
-          <span class="badge-dot"></span>
-          Available for work
-        </div>
         
         <h1 class="hero-title animate-slide-up">
           Hi, I&apos;m <span class="gradient-text">Jovel Christer</span>
