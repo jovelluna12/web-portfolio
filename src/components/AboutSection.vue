@@ -69,7 +69,7 @@ export default {
     return {
       backendSkills: ['PHP', 'Laravel', 'WordPress', 'MySQL', 'REST APIs'],
       frontendSkills: ['JavaScript', 'Vue.js', 'jQuery', 'HTML5', 'CSS3', 'Tailwind'],
-      toolsSkills: ['Git', 'Vite', 'npm', 'VS Code', 'Figma', 'Linux']
+      toolsSkills: ['Git', 'Vite', 'npm', 'VS Code', 'Linux']
     }
   }
 }
