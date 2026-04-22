@@ -15,11 +15,12 @@
           :key="post.slug" 
           class="post-card card"
           :style="{ animationDelay: `${index * 0.1}s` }"
+          @click="openPost(post)"
         >
           <div class="post-content">
             <div class="post-meta">
               <time v-if="post.date" class="post-date">{{ formatDate(post.date) }}</time>
-              <span v-if="post.tags.length" class="post-tags">
+              <span v-if="post.tags && post.tags.length" class="post-tags">
                 <span v-for="tag in post.tags.slice(0, 2)" :key="tag" class="tag">{{ tag }}</span>
               </span>
             </div>
@@ -27,10 +28,10 @@
             <h3 class="post-title">{{ post.title }}</h3>
             <p class="post-excerpt">{{ post.excerpt || 'Read more about this topic...' }}</p>
             
-            <a :href="`#post-${post.slug}`" class="post-link" @click.prevent="openPost(post)">
+            <span class="post-link">
               Read Article
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
+            </span>
           </div>
         </article>
       </div>
@@ -54,7 +55,7 @@
             <header class="post-modal-header">
               <div class="post-meta">
                 <time v-if="selectedPost.date" class="post-date">{{ formatDate(selectedPost.date) }}</time>
-                <span v-if="selectedPost.tags.length" class="post-tags">
+                <span v-if="selectedPost.tags && selectedPost.tags.length" class="post-tags">
                   <span v-for="tag in selectedPost.tags" :key="tag" class="tag">{{ tag }}</span>
                 </span>
               </div>
@@ -70,7 +71,7 @@
 </template>
 
 <script>
-import { getPosts } from '../utils/posts'
+import { marked } from 'marked'
 
 export default {
   name: 'PostsSection',
@@ -81,9 +82,64 @@ export default {
     }
   },
   created() {
-    this.posts = getPosts()
+    this.loadPosts()
   },
   methods: {
+    loadPosts() {
+      // Use the updated Vite glob syntax with query parameter
+      const postFiles = import.meta.glob('../posts/*.md', { query: '?raw', import: 'default', eager: true })
+      
+      this.posts = Object.entries(postFiles).map(([path, content]) => {
+        const slug = path.replace('../posts/', '').replace('.md', '')
+        const { frontmatter, body } = this.parseFrontmatter(content)
+        
+        return {
+          slug,
+          title: frontmatter.title || this.formatSlugToTitle(slug),
+          date: frontmatter.date || null,
+          tags: frontmatter.tags || [],
+          excerpt: frontmatter.excerpt || body.slice(0, 150) + '...',
+          contentHtml: marked(body)
+        }
+      }).sort((a, b) => {
+        if (!a.date || !b.date) return 0
+        return new Date(b.date) - new Date(a.date)
+      })
+    },
+    parseFrontmatter(content) {
+      const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/
+      const match = content.match(frontmatterRegex)
+      
+      if (!match) {
+        return { frontmatter: {}, body: content }
+      }
+      
+      const frontmatterStr = match[1]
+      const body = match[2]
+      const frontmatter = {}
+      
+      frontmatterStr.split('\n').forEach(line => {
+        const [key, ...valueParts] = line.split(':')
+        if (key && valueParts.length) {
+          let value = valueParts.join(':').trim()
+          // Handle arrays
+          if (value.startsWith('[') && value.endsWith(']')) {
+            value = value.slice(1, -1).split(',').map(v => v.trim().replace(/['"]/g, ''))
+          } else {
+            value = value.replace(/['"]/g, '')
+          }
+          frontmatter[key.trim()] = value
+        }
+      })
+      
+      return { frontmatter, body }
+    },
+    formatSlugToTitle(slug) {
+      return slug
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+    },
     formatDate(dateStr) {
       if (!dateStr) return ''
       const date = new Date(dateStr)
@@ -144,6 +200,7 @@ export default {
 .post-card {
   animation: fade-in 0.6s ease-out forwards;
   opacity: 0;
+  cursor: pointer;
 }
 
 .post-content {
@@ -195,7 +252,7 @@ export default {
   transition: gap 0.2s ease;
 }
 
-.post-link:hover {
+.post-card:hover .post-link {
   gap: 12px;
 }
 
