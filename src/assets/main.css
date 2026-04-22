@@ -104,13 +104,13 @@ a:hover {
 /* Grid layouts */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
   gap: 24px;
 }
 
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   gap: 24px;
 }
 
@@ -124,9 +124,36 @@ a:hover {
     font-size: 1.75rem;
   }
   
+  .container {
+    padding: 0 16px;
+  }
+  
   .projects-grid,
   .posts-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 48px 12px;
+  }
+  
+  .container {
+    padding: 0 12px;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
   }
 }
 
