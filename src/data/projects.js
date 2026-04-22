@@ -4,7 +4,7 @@ const projects = [
     title: 'WordPress Website Development',
     description: 'Developed and maintained responsive, SEO-optimized WordPress websites across various industries including business, eCommerce, and blogs.',
     tech: ['PHP', 'WordPress', 'JavaScript', 'CSS'],
-    link: './blog/wordpress-projects',
+    link: '/blog/wordpress-projects',
     image: '',
   },
   {
@@ -12,7 +12,7 @@ const projects = [
     title: 'Legacy Sports Job Listing & Social Platform',
     description: 'Maintained and modernized a legacy job listing and social networking platform, improving stability, performance, and feature set.',
     tech: ['Laravel', 'Vue 2', 'JavaScript', 'Sass'],
-    link: './blog/sports-job-listing',
+    link: '/blog/sports-job-listing',
     image: '',
   },
   {
@@ -20,7 +20,7 @@ const projects = [
     title: 'Property Management Platform',
     description: 'Enhanced and maintained a property management system, adding new features and improving system stability and performance.',
     tech: ['Laravel', 'JavaScript', 'jQuery', 'CSS'],
-    link: './blog/property-management-system',
+    link: '/blog/property-management-system',
     image: '',
   },
   {
