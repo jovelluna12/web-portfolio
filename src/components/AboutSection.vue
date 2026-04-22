@@ -20,20 +20,6 @@
             </p>
           </div>
           
-          <div class="about-stats">
-            <div class="stat">
-              <span class="stat-value">5+</span>
-              <span class="stat-label">Years Experience</span>
-            </div>
-            <div class="stat">
-              <span class="stat-value">50+</span>
-              <span class="stat-label">Projects Completed</span>
-            </div>
-            <div class="stat">
-              <span class="stat-value">20+</span>
-              <span class="stat-label">Happy Clients</span>
-            </div>
-          </div>
         </div>
         
         <div class="skills-panel">

@@ -11,13 +11,13 @@
           </p>
           
           <div class="contact-links">
-            <a href="mailto:hello@jovelchrister.dev" class="contact-link">
+            <a href="mailto:jovelchristerluna.professional@gmail.com" class="contact-link">
               <span class="link-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               </span>
               <span class="link-content">
                 <span class="link-label">Email</span>
-                <span class="link-value">hello@jovelchrister.dev</span>
+                <span class="link-value">jovelchristerluna.professional@gmail.com</span>
               </span>
             </a>
             
@@ -31,65 +31,16 @@
               </span>
             </a>
             
-            <a href="https://linkedin.com/in/jovelchrister" target="_blank" rel="noreferrer" class="contact-link">
+            <a href="https://linkedin.com/in/jovelluna12" target="_blank" rel="noreferrer" class="contact-link">
               <span class="link-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
               </span>
               <span class="link-content">
                 <span class="link-label">LinkedIn</span>
-                <span class="link-value">jovelchrister</span>
+                <span class="link-value">jovelluna12</span>
               </span>
             </a>
           </div>
-        </div>
-        
-        <div class="contact-form-wrapper">
-          <form class="contact-form" @submit.prevent="handleSubmit">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input 
-                id="name" 
-                v-model="form.name" 
-                type="text" 
-                placeholder="Your name"
-                required
-              />
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input 
-                id="email" 
-                v-model="form.email" 
-                type="email" 
-                placeholder="your@email.com"
-                required
-              />
-            </div>
-            
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea 
-                id="message" 
-                v-model="form.message" 
-                placeholder="Tell me about your project..."
-                rows="5"
-                required
-              ></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-primary submit-btn" :disabled="isSubmitting">
-              <span v-if="!isSubmitting">
-                Send Message
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-              </span>
-              <span v-else>Sending...</span>
-            </button>
-            
-            <p v-if="submitMessage" :class="['submit-message', submitStatus]">
-              {{ submitMessage }}
-            </p>
-          </form>
         </div>
       </div>
     </div>
@@ -99,39 +50,6 @@
 <script>
 export default {
   name: 'ContactSection',
-  data() {
-    return {
-      form: {
-        name: '',
-        email: '',
-        message: ''
-      },
-      isSubmitting: false,
-      submitMessage: '',
-      submitStatus: ''
-    }
-  },
-  methods: {
-    async handleSubmit() {
-      this.isSubmitting = true
-      this.submitMessage = ''
-      
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      this.submitMessage = 'Thanks for reaching out! I\'ll get back to you soon.'
-      this.submitStatus = 'success'
-      this.isSubmitting = false
-      
-      // Reset form
-      this.form = { name: '', email: '', message: '' }
-      
-      // Clear message after 5 seconds
-      setTimeout(() => {
-        this.submitMessage = ''
-      }, 5000)
-    }
-  }
 }
 </script>
 

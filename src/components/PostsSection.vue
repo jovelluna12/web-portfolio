@@ -15,11 +15,12 @@
           :key="post.slug" 
           class="post-card card"
           :style="{ animationDelay: `${index * 0.1}s` }"
+          @click="openPost(post)"
         >
           <div class="post-content">
             <div class="post-meta">
               <time v-if="post.date" class="post-date">{{ formatDate(post.date) }}</time>
-              <span v-if="post.tags.length" class="post-tags">
+              <span v-if="post.tags && post.tags.length" class="post-tags">
                 <span v-for="tag in post.tags.slice(0, 2)" :key="tag" class="tag">{{ tag }}</span>
               </span>
             </div>
@@ -27,10 +28,10 @@
             <h3 class="post-title">{{ post.title }}</h3>
             <p class="post-excerpt">{{ post.excerpt || 'Read more about this topic...' }}</p>
             
-            <a :href="`#post-${post.slug}`" class="post-link" @click.prevent="openPost(post)">
+            <span class="post-link">
               Read Article
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
+            </span>
           </div>
         </article>
       </div>
@@ -40,7 +41,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
         </div>
         <h3 class="empty-title">No posts yet</h3>
-        <p class="empty-description">Blog posts will appear here once added to the posts folder.</p>
+        <p class="empty-description">Blog posts will appear here once added.</p>
       </div>
       
       <!-- Post Modal -->
@@ -54,7 +55,7 @@
             <header class="post-modal-header">
               <div class="post-meta">
                 <time v-if="selectedPost.date" class="post-date">{{ formatDate(selectedPost.date) }}</time>
-                <span v-if="selectedPost.tags.length" class="post-tags">
+                <span v-if="selectedPost.tags && selectedPost.tags.length" class="post-tags">
                   <span v-for="tag in selectedPost.tags" :key="tag" class="tag">{{ tag }}</span>
                 </span>
               </div>
@@ -70,7 +71,8 @@
 </template>
 
 <script>
-import { getPosts } from '../utils/posts'
+import { marked } from 'marked'
+import postsData from '../data/posts.json'
 
 export default {
   name: 'PostsSection',
@@ -81,9 +83,18 @@ export default {
     }
   },
   created() {
-    this.posts = getPosts()
+    this.loadPosts()
   },
   methods: {
+    loadPosts() {
+      this.posts = postsData.map(post => ({
+        ...post,
+        contentHtml: marked(post.content || '')
+      })).sort((a, b) => {
+        if (!a.date || !b.date) return 0
+        return new Date(b.date) - new Date(a.date)
+      })
+    },
     formatDate(dateStr) {
       if (!dateStr) return ''
       const date = new Date(dateStr)
@@ -137,13 +148,14 @@ export default {
 
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 24px;
 }
 
 .post-card {
   animation: fade-in 0.6s ease-out forwards;
   opacity: 0;
+  cursor: pointer;
 }
 
 .post-content {
@@ -195,7 +207,7 @@ export default {
   transition: gap 0.2s ease;
 }
 
-.post-link:hover {
+.post-card:hover .post-link {
   gap: 12px;
 }
 
@@ -306,6 +318,19 @@ export default {
 
 .post-modal-body :deep(a) {
   color: var(--accent);
+}
+
+.post-modal-body :deep(pre) {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.post-modal-body :deep(code) {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
 }
 
 @media (max-width: 768px) {
