@@ -2,7 +2,7 @@
   <aside class="sidebox">
     <section class="about-excerpt mb-6">
       <h3 class="text-lg font-semibold">About</h3>
-      <p class="text-sm text-gray-700 mt-2">I'm a web developer building accessible and performant websites. This sidebar mirrors a classic Jekyll sidebar.</p>
+      <p class="text-sm text-gray-700 mt-2">I'm a web developer building accessible and performant websites.</p>
       <router-link to="/about" class="block mt-3 green">Read more →</router-link>
     </section>
 

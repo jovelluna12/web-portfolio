@@ -28,7 +28,6 @@ Each project required adapting to unique business needs while ensuring consisten
 - **Backend:** PHP  
 - **Frontend:** HTML, CSS, JavaScript  
 - **Platform:** WordPress  
-- **Tools:** Git  
 
 ---
 
