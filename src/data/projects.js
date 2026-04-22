@@ -47,14 +47,6 @@ const projects = [
     link: 'https://sample-restaurant-portfolio-yez2.vercel.app/',
     image: '',
   },
-  {
-    id: 'p3',
-    title: 'Portfolio Website',
-    description: 'Personal portfolio featuring a Jekyll-inspired design showcasing projects and case studies.',
-    tech: ['Vue', 'Vite', 'CSS'],
-    link: 'https://jovelluna12.github.io',
-    image: '',
-  }
 ]
 
 export default projects
