@@ -186,7 +186,6 @@ export default {
   
   .nav-links a {
     font-size: 1rem;
-    padding: 8px 0;
   }
 }
 </style>

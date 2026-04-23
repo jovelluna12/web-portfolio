@@ -256,6 +256,12 @@ export default {
   color: var(--accent);
 }
 
+@media(max-width: 1024px) {
+  .scroll-indicator {
+    display: none;
+  }
+}
+
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(8px); }
@@ -281,10 +287,6 @@ export default {
   
   .hero-actions {
     justify-content: center;
-  }
-  
-  .hero-visual {
-    order: -1;
   }
 }
 
