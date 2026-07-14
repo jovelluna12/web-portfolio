@@ -1,35 +1,25 @@
 <script setup>
-import NavBar from './components/NavBar.vue'
-import HeroSection from './components/HeroSection.vue'
-import ProjectsSection from './components/ProjectsSection.vue'
-import PostsSection from './components/PostsSection.vue'
-import AboutSection from './components/AboutSection.vue'
-import ContactSection from './components/ContactSection.vue'
-import Footer from './components/Footer.vue'
+import Header from './components/header.vue'
+import Banner from './components/banner.vue'
+import Projects from './components/projects.vue'
+import Experiences from './components/experiences.vue'
+import Skills from './components/skills.vue'
+import Contact from './components/contact.vue'
+import BackToTop from './components/backtop.vue'
 </script>
 
 <template>
-  <div class="app-root">
-    <NavBar />
-    <main>
-      <HeroSection />
-      <ProjectsSection />
-      <PostsSection />
-      <AboutSection />
-      <ContactSection />
-    </main>
-    <Footer />
-  </div>
+  <Header />
+  <main>
+    <Banner />
+    <Projects />
+    <Experiences />
+    <Skills />
+    <Contact />
+    <BackToTop />
+  </main>
 </template>
 
 <style scoped>
-.app-root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
 
-main {
-  flex: 1;
-}
 </style>
