@@ -1,12 +1,9 @@
 <template>
-  <section class="skills">
+  <section id="skills" class="skills">
     <div class="container">
       <header class="section-header">
-        <h2>Skills & Technologies</h2>
-        <p>
-          Technologies and tools I've worked with throughout my development
-          journey.
-        </p>
+        <h2>Skills</h2>
+        <p>Technologies and tools I use to build modern web applications.</p>
       </header>
 
       <div class="skills-grid">
@@ -19,9 +16,9 @@
 
           <div class="skill-list">
             <span
-              v-for="skill in category.skills"
+              v-for="skill in category.items"
               :key="skill"
-              class="skill-chip"
+              class="skill"
             >
               {{ skill }}
             </span>
@@ -36,75 +33,68 @@
 const skillCategories = [
   {
     title: "Frontend",
-    skills: [
-      "HTML5",
-      "CSS3",
-      "SCSS/SASS",
-      "JavaScript (ES6+)",
-      "TypeScript",
+    items: [
+      "HTML",
+      "CSS",
+      "SCSS",
+      "JavaScript",
       "Vue.js",
-      "React",
-      "Bootstrap",
-      "Tailwind CSS"
+      "React"
     ]
   },
   {
     title: "Backend",
-    skills: [
+    items: [
       "PHP",
       "Laravel",
-      "Node.js",
       "REST APIs"
     ]
   },
   {
-    title: "Databases",
-    skills: [
+    title: "CMS",
+    items: [
+      "WordPress",
+      "WooCommerce",
+      "Elementor",
+      "WPBakery",
+      "Avada",
+      "Advanced Custom Fields (ACF)",
+      "Gutenberg"
+    ]
+  },
+  {
+    title: "Database",
+    items: [
       "MySQL",
       "PostgreSQL"
     ]
   },
   {
-    title: "CMS",
-    skills: [
-      "WordPress",
-      "Elementor",
-      "WPBakery",
-      "WooCommerce",
-      "Advanced Custom Fields (ACF)",
-      "Gutenberg",
-    ]
-  },
-  {
     title: "Tools & DevOps",
-    skills: [
+    items: [
       "Git",
       "GitHub",
       "GitHub Actions",
-      "Linux",
-      "Docker",
-      "VS Code",
-      "Postman"
+      "Linux"
     ]
   },
   {
-    title: "Practices",
-    skills: [
+    title: "Development Practices",
+    items: [
       "Responsive Design",
       "Cross-Browser Compatibility",
-      "API Integration",
-      "Agile Development",
-      "Version Control",
-      "Debugging",
-      "Performance Optimization"
+      "Code Review",
+      "Agile",
+      "Problem Solving"
     ]
   }
-]
+];
 </script>
 
 <style scoped>
 .skills {
   padding: 5rem 1.5rem;
+  background-color: #f5f5f5;
 }
 
 .container {
@@ -124,33 +114,30 @@ const skillCategories = [
 
 .section-header p {
   color: #64748b;
-  max-width: 650px;
-  margin: auto;
 }
 
 .skills-grid {
   display: grid;
-  gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
 .skill-card {
-  background: white;
+  background: #fff;
+  padding: 1.5rem;
   border-radius: 16px;
-  padding: 1.75rem;
   box-shadow: 0 10px 30px rgba(0,0,0,.08);
   transition: .25s ease;
 }
 
 .skill-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,.12);
 }
 
 .skill-card h3 {
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
   color: #2563eb;
-  font-size: 1.15rem;
 }
 
 .skill-list {
@@ -159,19 +146,13 @@ const skillCategories = [
   gap: .6rem;
 }
 
-.skill-chip {
+.skill {
   background: #eff6ff;
   color: #1d4ed8;
-  padding: .45rem .85rem;
+  padding: .45rem .8rem;
   border-radius: 999px;
   font-size: .85rem;
   font-weight: 500;
-  transition: .2s;
-}
-
-.skill-chip:hover {
-  background: #2563eb;
-  color: white;
 }
 
 @media (max-width: 768px) {

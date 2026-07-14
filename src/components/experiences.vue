@@ -1,5 +1,5 @@
 <template>
-  <section class="experience">
+  <section id="experiences" class="experience">
     <div class="container">
       <header class="section-header">
         <h2>Work Experience</h2>
@@ -151,7 +151,7 @@ Simply add another object:
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: auto;
 }
 
