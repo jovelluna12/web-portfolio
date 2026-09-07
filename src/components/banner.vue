@@ -7,12 +7,10 @@
             />
         </div>
         <section class="banner-text">
-            <h1>Hi, I'm Jovel Luna</h1>
-            <h2>I build responsive & scalable web applications.</h2>
+            <h1>Jovel Luna</h1>
+            <h2>Full Stack Developer</h2>
             <p>
-                I'm a Full Stack Developer passionate about building
-                responsive, scalable, and user-friendly web applications
-                using modern technologies.
+                Full Stack Developer specializing in PHP, Laravel & WordPress
             </p>
         </section>
     </div>
