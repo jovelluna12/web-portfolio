@@ -10,7 +10,7 @@
             <h1>Jovel Luna</h1>
             <h2>Full Stack Developer</h2>
             <p>
-                Full Stack Developer specializing in PHP, Laravel & WordPress
+                Full Stack Developer with professional experience building, maintaining, and modernizing production web applications. Primarily focused on PHP, Laravel, WordPress, JavaScript, and Vue, with experience working across backend systems, APIs, responsive interfaces, databases, and legacy applications.
             </p>
         </section>
     </div>
