@@ -10,16 +10,20 @@
 
             <p>
                 Full Stack Developer with hands-on agency experience building, modernizing, and scaling production web
-                applications. Specializing in Laravel, PHP, Vue.js, React.js, and WordPress, I bridge robust backend architecture
-                with responsive frontends to deliver reliable, high-performance digital solutions.
+                applications. Specializing in Laravel, PHP, Vue.js, React.js, and WordPress, I bridge robust backend
+                architecture with responsive frontends to deliver reliable, high-performance digital solutions.
             </p>
 
             <div class="banner-actions">
-                <a href="#projects" class="btn btn-primary">
-                    View Projects
+                <a href="#professional-work" class="btn btn-primary">
+                    Professional Work
                 </a>
 
-                <a href="#contact" class="btn btn-secondary">
+                <a href="#personal-projects" class="btn btn-secondary">
+                    Personal Projects
+                </a>
+
+                <a href="#contact" class="btn btn-outline">
                     Get in Touch
                 </a>
             </div>
@@ -74,6 +78,7 @@
 /* CTA Buttons */
 .banner-actions {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
     margin-top: 2rem;
@@ -83,10 +88,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 150px;
-    padding: 0.85rem 1.5rem;
+    min-width: 140px;
+    padding: 0.85rem 1.25rem;
     border-radius: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
     transition:
@@ -116,13 +121,25 @@
 
 .btn-secondary {
     color: #2563eb;
-    background-color: transparent;
+    background-color: rgba(37, 99, 235, 0.05);
     border: 2px solid #2563eb;
 }
 
 .btn-secondary:hover {
     color: #ffffff;
     background-color: #2563eb;
+}
+
+.btn-outline {
+    color: #475569;
+    background-color: transparent;
+    border: 2px solid #cbd5e1;
+}
+
+.btn-outline:hover {
+    color: #1e293b;
+    border-color: #94a3b8;
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 /* Large Tablets */
@@ -196,5 +213,4 @@
         width: 100%;
     }
 }
-
 </style>

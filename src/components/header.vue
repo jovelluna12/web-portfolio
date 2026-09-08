@@ -27,8 +27,14 @@
         </li>
 
         <li>
-          <a href="#projects" @click="closeMenu">
-            Projects
+          <a href="#professional-work" @click="closeMenu">
+            Professional Work
+          </a>
+        </li>
+
+        <li>
+          <a href="#personal-projects" @click="closeMenu">
+            Personal Projects
           </a>
         </li>
 
