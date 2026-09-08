@@ -1,38 +1,79 @@
-# portfolio-revamp
+# Jovel Luna — Developer Portfolio
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to my personal portfolio website.
 
-## Recommended IDE Setup
+This project showcases my experience, skills, projects, and work as a Full Stack Developer. It is built with **Vue 3** and **Vite**, with a focus on creating a clean, responsive, and modern portfolio experience.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## About Me
 
-## Recommended Browser Setup
+I'm **Jovel Luna**, a Full Stack Developer with professional experience building, maintaining, and modernizing production web applications.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+My primary technologies include:
 
-## Customize configuration
+- PHP  
+- Laravel  
+- WordPress  
+- JavaScript  
+- Vue.js  
+- REST APIs  
+- MySQL  
+- Responsive Web Development  
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+I have experience working across both backend and frontend systems, including APIs, databases, responsive interfaces, and legacy application modernization.
 
-## Project Setup
+## Tech Stack
 
-```sh
+| Category                  | Technologies                      |
+|---------------------------|-----------------------------------|
+| Frontend                  | Vue 3, JavaScript, HTML, CSS      |
+| Backend                   | PHP, Laravel, WordPress           |
+| Database                  | MySQL                             |
+| Build Tool                | Vite                              |
+| Development Environment   | Laragon                           |
+
+## Getting Started
+
+### Project Setup
+
+Clone the repository and install the dependencies:
+
+```bash
 npm install
-```
 
-### Compile and Hot-Reload for Development
+### Development
 
-```sh
+Start the development server with hot-reload:
+
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Production Build
 
-```sh
+Compile and minify the application for production:
+
+```bash
 npm run build
 ```
+
+## Setup & Tooling Recommendations
+
+### Recommended IDE Setup
+
+- **VS Code** + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) extension
+
+### Recommended Browser Setup
+
+**Chromium-based Browsers** (Chrome, Edge, Brave, etc.)
+- [Vue.js DevTools](https://chrome.google.com/webstore/detail/vuejs-devtools)
+
+**Firefox**
+- [Vue.js DevTools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+
+## Configuration
+
+This project uses **Vite** for development and production builds. For more information, see the [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## License
+
+This project is my personal developer portfolio. Feel free to explore the code and learn more about my work and experience.
