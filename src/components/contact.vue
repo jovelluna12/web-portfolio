@@ -80,7 +80,7 @@ const contacts = [
 }
 
 .section-header p {
-  color: #64748b;
+  color: var(--color-text-muted);
   max-width: 650px;
   margin: auto;
   line-height: 1.7;
@@ -96,7 +96,7 @@ const contacts = [
   align-items: center;
   gap: 1.25rem;
 
-  background: white;
+  background: var(--color-surface);
   padding: 1.5rem;
   border-radius: 16px;
 
@@ -118,7 +118,7 @@ const contacts = [
   justify-content: center;
 
   border-radius: 50%;
-  background: #eff6ff;
+  background: var(--color-accent-soft-bg);
   font-size: 1.6rem;
 }
 
@@ -132,7 +132,7 @@ const contacts = [
 }
 
 .content a {
-  color: #2563eb;
+  color: var(--color-accent);
   text-decoration: none;
   word-break: break-word;
 }

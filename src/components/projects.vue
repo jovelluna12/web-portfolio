@@ -446,7 +446,7 @@ const personalProjects = [
 .section-header p {
   max-width: 680px;
   margin: 0 auto;
-  color: #64748b;
+  color: var(--color-text-muted);
   line-height: 1.8;
   font-size: 1.05rem;
 }
@@ -477,14 +477,8 @@ const personalProjects = [
    PROFESSIONAL WORK
 ========================================= */
 
-.professional-section {
-  background: var(--color-background-soft);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-}
-
 .professional-eyebrow {
-  color: #2563eb;
+  color: var(--color-accent);
   background: rgba(37, 99, 235, 0.05);
   border: 1px solid rgba(37, 99, 235, 0.15);
 }
@@ -574,7 +568,7 @@ const personalProjects = [
   border-radius: 999px;
 
   background: rgba(37, 99, 235, 0.05);
-  color: #2563eb;
+  color: var(--color-accent);
 
   font-size: 0.7rem;
   font-weight: 600;
@@ -607,7 +601,7 @@ const personalProjects = [
 .case-study-summary {
   margin-bottom: 1.75rem;
 
-  color: #64748b;
+  color: var(--color-text-muted);
 
   line-height: 1.7;
 }
@@ -630,7 +624,7 @@ const personalProjects = [
 
 .case-study-section p,
 .case-study-section li {
-  color: #64748b;
+  color: var(--color-text-muted);
   line-height: 1.65;
 }
 
@@ -660,7 +654,7 @@ const personalProjects = [
   border: 1px solid rgba(37, 99, 235, 0.12);
   border-radius: 10px;
 
-  color: #64748b;
+  color: var(--color-text-muted);
 
   font-size: 0.8rem;
   line-height: 1.5;
@@ -675,16 +669,12 @@ const personalProjects = [
    PERSONAL PROJECTS
 ========================================= */
 
-.personal-section {
-  background: var(--color-background);
-}
-
 .personal-header {
   margin-top: 0;
 }
 
 .personal-eyebrow {
-  color: #2563eb;
+  color: var(--color-accent);
   background: rgba(37, 99, 235, 0.05);
   border: 1px solid rgba(37, 99, 235, 0.15);
 }
@@ -764,7 +754,7 @@ const personalProjects = [
 
   background: var(--color-background-soft);
 
-  color: #64748b;
+  color: var(--color-text-muted);
 
   font-weight: 600;
 }
@@ -791,7 +781,7 @@ const personalProjects = [
   border-radius: 999px;
 
   background: rgba(37, 99, 235, 0.05);
-  color: #2563eb;
+  color: var(--color-accent);
 
   font-size: 0.7rem;
   font-weight: 600;
@@ -812,7 +802,7 @@ const personalProjects = [
 .description {
   margin-bottom: 1.25rem;
 
-  color: #64748b;
+  color: var(--color-text-muted);
 
   line-height: 1.7;
 }
@@ -837,7 +827,7 @@ const personalProjects = [
   border: 1px solid rgba(37, 99, 235, 0.15);
   border-radius: 999px;
 
-  color: #2563eb;
+  color: var(--color-accent);
 
   font-size: 0.8rem;
   font-weight: 600;
@@ -876,11 +866,11 @@ const personalProjects = [
 
   padding: 0.6rem 0.9rem;
 
-  border: 2px solid #cbd5e1;
+  border: 2px solid var(--color-outline);
   border-radius: 0.5rem;
 
   background: transparent;
-  color: #475569;
+  color: var(--color-text-secondary);
 
   font-size: 0.9rem;
   font-weight: 600;
@@ -898,11 +888,11 @@ const personalProjects = [
 .project-link:hover {
   transform: translateY(-2px);
 
-  color: #1e293b;
+  color: var(--color-text-strong);
 
-  border-color: #94a3b8;
+  border-color: var(--color-outline-hover);
 
-  background: rgba(0, 0, 0, 0.02);
+  background: var(--color-hover-tint);
 }
 
 .primary-link {

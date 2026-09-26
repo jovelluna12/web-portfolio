@@ -59,7 +59,7 @@ const goBack = () => {
     justify-content: center;
     min-height: 100vh;
     padding: 2rem 8%;
-    background-color: #f5f5f5;
+    background-color: var(--color-page);
 }
 
 .error-content {
@@ -83,7 +83,7 @@ const goBack = () => {
     width: 100px;
     height: 100px;
     margin: 0 auto 2rem;
-    color: #2563eb;
+    color: var(--color-accent);
     opacity: 0.9;
 }
 
@@ -96,7 +96,7 @@ const goBack = () => {
     font-size: clamp(4rem, 10vw, 8rem);
     line-height: 1;
     margin-bottom: 1rem;
-    color: #2563eb;
+    color: var(--color-accent);
     font-weight: 700;
 }
 
@@ -110,7 +110,7 @@ const goBack = () => {
 .error-content p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #64748b;
+    color: var(--color-text-muted);
     margin-bottom: 2.5rem;
 }
 
@@ -159,37 +159,15 @@ const goBack = () => {
 }
 
 .btn-outline {
-    color: #475569;
+    color: var(--color-text-secondary);
     background-color: transparent;
-    border: 2px solid #cbd5e1;
+    border: 2px solid var(--color-outline);
 }
 
 .btn-outline:hover {
-    color: #1e293b;
-    border-color: #94a3b8;
-    background-color: rgba(0, 0, 0, 0.02);
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .error-container {
-        background-color: var(--vt-c-black);
-    }
-
-    .error-content p {
-        color: rgba(235, 235, 235, 0.64);
-    }
-
-    .btn-outline {
-        color: rgba(235, 235, 235, 0.9);
-        border-color: rgba(203, 213, 225, 0.3);
-    }
-
-    .btn-outline:hover {
-        color: #ffffff;
-        border-color: rgba(203, 213, 225, 0.5);
-        background-color: rgba(255, 255, 255, 0.05);
-    }
+    color: var(--color-text-strong);
+    border-color: var(--color-outline-hover);
+    background-color: var(--color-hover-tint);
 }
 
 /* Tablets */

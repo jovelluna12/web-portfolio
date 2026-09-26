@@ -94,7 +94,7 @@ const skillCategories = [
 <style scoped>
 .skills {
   padding: 5rem 1.5rem;
-  background-color: #f5f5f5;
+  background-color: var(--color-page);
 }
 
 .container {
@@ -113,7 +113,7 @@ const skillCategories = [
 }
 
 .section-header p {
-  color: #64748b;
+  color: var(--color-text-muted);
 }
 
 .skills-grid {
@@ -123,7 +123,7 @@ const skillCategories = [
 }
 
 .skill-card {
-  background: #fff;
+  background: var(--color-surface);
   padding: 1.5rem;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,.08);
@@ -137,7 +137,7 @@ const skillCategories = [
 
 .skill-card h3 {
   margin-bottom: 1rem;
-  color: #2563eb;
+  color: var(--color-accent);
 }
 
 .skill-list {
@@ -147,8 +147,8 @@ const skillCategories = [
 }
 
 .skill {
-  background: #eff6ff;
-  color: #1d4ed8;
+  background: var(--color-accent-soft-bg);
+  color: var(--color-accent-soft-text);
   padding: .45rem .8rem;
   border-radius: 999px;
   font-size: .85rem;

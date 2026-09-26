@@ -65,14 +65,14 @@
 
 .banner-text h2 {
     font-size: clamp(1.25rem, 3vw, 2rem);
-    color: #2563eb;
+    color: var(--color-accent);
     margin-bottom: 1rem;
 }
 
 .banner-text p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #64748b;
+    color: var(--color-text-muted);
 }
 
 /* CTA Buttons */
@@ -120,7 +120,7 @@
 }
 
 .btn-secondary {
-    color: #2563eb;
+    color: var(--color-accent);
     background-color: rgba(37, 99, 235, 0.05);
     border: 2px solid #2563eb;
 }
@@ -131,15 +131,15 @@
 }
 
 .btn-outline {
-    color: #475569;
+    color: var(--color-text-secondary);
     background-color: transparent;
-    border: 2px solid #cbd5e1;
+    border: 2px solid var(--color-outline);
 }
 
 .btn-outline:hover {
-    color: #1e293b;
-    border-color: #94a3b8;
-    background-color: rgba(0, 0, 0, 0.02);
+    color: var(--color-text-strong);
+    border-color: var(--color-outline-hover);
+    background-color: var(--color-hover-tint);
 }
 
 /* Large Tablets */

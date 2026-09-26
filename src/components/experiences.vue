@@ -166,7 +166,7 @@ Simply add another object:
 }
 
 .section-header p {
-  color: #64748b;
+  color: var(--color-text-muted);
 }
 
 .timeline {
@@ -184,7 +184,7 @@ Simply add another object:
   top: 0;
   bottom: 0;
   width: 2px;
-  background: #dbeafe;
+  background: var(--color-accent-line);
 }
 
 .experience-card {
@@ -199,12 +199,12 @@ Simply add another object:
   height: 16px;
   border-radius: 50%;
   background: #2563eb;
-  border: 4px solid white;
+  border: 4px solid var(--color-surface);
   box-shadow: 0 0 0 2px #2563eb;
 }
 
 .card {
-  background: white;
+  background: var(--color-surface);
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 10px 30px rgba(0,0,0,.08);
@@ -231,13 +231,13 @@ Simply add another object:
 
 .card-header h4 {
   margin-top: .25rem;
-  color: #2563eb;
+  color: var(--color-accent);
   font-weight: 600;
 }
 
 .duration {
-  background: #eff6ff;
-  color: #1d4ed8;
+  background: var(--color-accent-soft-bg);
+  color: var(--color-accent-soft-text);
   padding: .45rem .8rem;
   border-radius: 999px;
   font-size: .85rem;
@@ -245,7 +245,7 @@ Simply add another object:
 }
 
 .location {
-  color: #64748b;
+  color: var(--color-text-muted);
   margin-bottom: 1rem;
 }
 
@@ -266,8 +266,8 @@ Simply add another object:
 }
 
 .skill {
-  background: #f1f5f9;
-  color: #334155;
+  background: var(--color-chip-bg);
+  color: var(--color-chip-text);
   padding: .4rem .8rem;
   border-radius: 999px;
   font-size: .85rem;
@@ -275,7 +275,7 @@ Simply add another object:
 }
 
 .company-link {
-  color: #2563eb;
+  color: var(--color-accent);
   text-decoration: none;
   font-weight: 600;
 }
@@ -290,8 +290,8 @@ Simply add another object:
   margin-left: .75rem;
   padding: .2rem .6rem;
   border-radius: 999px;
-  background: #ecfdf5;
-  color: #047857;
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
   font-size: .75rem;
   font-weight: 600;
   vertical-align: middle;

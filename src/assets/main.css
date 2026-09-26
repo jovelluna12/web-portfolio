@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-  color: #2563eb;
+  color: var(--color-accent);
 }
 
 @media (min-width: 1024px) {

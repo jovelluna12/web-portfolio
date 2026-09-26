@@ -76,7 +76,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  background-color: rgba(245, 245, 245, .9);
+  background-color: var(--color-page-translucent);
   backdrop-filter: blur(10px);
   z-index: 999;
 }
@@ -93,7 +93,7 @@ header {
 .heading-name {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-heading);
   text-decoration: none;
 }
 
@@ -107,14 +107,14 @@ header {
 }
 
 .nav-links a {
-  color: #334155;
+  color: var(--color-chip-text);
   text-decoration: none;
   font-weight: 500;
   transition: color .2s ease;
 }
 
 .nav-links a:hover {
-  color: #2563eb;
+  color: var(--color-accent);
 }
 
 .menu-toggle {
@@ -129,7 +129,7 @@ header {
 .menu-toggle span {
   width: 24px;
   height: 2px;
-  background: #0f172a;
+  background: var(--color-heading);
   transition: .3s;
 }
 
@@ -149,11 +149,11 @@ header {
     top: 100%;
     left: 0;
     right: 0;
-    background: #f5f5f5;
+    background: var(--color-page);
     flex-direction: column;
     gap: 1.25rem;
     padding: 1.5rem;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--color-border);
     transform: translateY(-120%);
     opacity: 0;
     pointer-events: none;
