@@ -10,7 +10,7 @@
 
             <p>
                 Full Stack Developer with hands-on agency experience building, modernizing, and scaling production web
-                applications. Specializing in Laravel, PHP, Vue.js, React.js, and WordPress, I bridge robust backend
+                applications. Specializing in building responsive and user-friendly web applications. I bridge robust backend
                 architecture with responsive frontends to deliver reliable, high-performance digital solutions.
             </p>
 
