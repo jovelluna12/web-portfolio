@@ -1,5 +1,12 @@
 <IfModule mod_negotiation.c>
   Options -MultiViews
+  Options -Indexes
+</IfModule>
+
+# Block access to Git repository
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule (^|/)\.git(/|$) - [R=404,L]
 </IfModule>
 
 <IfModule mod_rewrite.c>
