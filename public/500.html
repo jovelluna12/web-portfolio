@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>500 - Server Error | Jovel Luna</title>
+        <link rel="icon" href="/favicon.ico" />
+        <style>
+            /* Reset & Base Styles */
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                --color-primary: #2563eb;
+                --color-primary-hover: #1d4ed8;
+                --color-text: #2c3e50;
+                --color-text-muted: #64748b;
+                --color-border: #cbd5e1;
+                --color-background: #f5f5f5;
+                --color-white: #ffffff;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --color-text: #ffffff;
+                    --color-text-muted: rgba(235, 235, 235, 0.64);
+                    --color-border: rgba(203, 213, 225, 0.3);
+                    --color-background: #181818;
+                }
+            }
+
+            body {
+                font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+                    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                font-size: 15px;
+                line-height: 1.6;
+                color: var(--color-text);
+                background-color: var(--color-background);
+                text-rendering: optimizeLegibility;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            /* Error Container */
+            .error-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                padding: 2rem 8%;
+            }
+
+            .error-content {
+                max-width: 600px;
+                text-align: center;
+                animation: fadeIn 0.6s ease-in-out;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Error Icon */
+            .error-icon {
+                width: 100px;
+                height: 100px;
+                margin: 0 auto 2rem;
+                color: var(--color-primary);
+                opacity: 0.9;
+            }
+
+            .error-icon svg {
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Typography */
+            .error-content h1 {
+                font-size: clamp(4rem, 10vw, 8rem);
+                line-height: 1;
+                margin-bottom: 1rem;
+                color: var(--color-primary);
+                font-weight: 700;
+            }
+
+            .error-content h2 {
+                font-size: clamp(1.5rem, 4vw, 2.5rem);
+                line-height: 1.2;
+                margin-bottom: 1rem;
+                color: var(--color-text);
+            }
+
+            .error-content p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: var(--color-text-muted);
+                margin-bottom: 2.5rem;
+            }
+
+            /* Buttons */
+            .error-actions {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 140px;
+                padding: 0.85rem 1.25rem;
+                border-radius: 0.5rem;
+                font-size: 0.95rem;
+                font-weight: 600;
+                text-decoration: none;
+                cursor: pointer;
+                border: 2px solid;
+                transition:
+                    background-color 0.2s ease,
+                    color 0.2s ease,
+                    border-color 0.2s ease,
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease;
+            }
+
+            .btn:hover {
+                transform: translateY(-2px);
+            }
+
+            .btn-primary {
+                color: var(--color-white);
+                background-color: var(--color-primary);
+                border-color: var(--color-primary);
+                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            }
+
+            .btn-primary:hover {
+                background-color: var(--color-primary-hover);
+                border-color: var(--color-primary-hover);
+                box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+            }
+
+            .btn-outline {
+                color: #475569;
+                background-color: transparent;
+                border-color: var(--color-border);
+            }
+
+            .btn-outline:hover {
+                color: #1e293b;
+                border-color: #94a3b8;
+                background-color: rgba(0, 0, 0, 0.02);
+            }
+
+            @media (prefers-color-scheme: dark) {
+                .btn-outline {
+                    color: rgba(235, 235, 235, 0.9);
+                }
+
+                .btn-outline:hover {
+                    color: var(--color-white);
+                    border-color: rgba(203, 213, 225, 0.5);
+                    background-color: rgba(255, 255, 255, 0.05);
+                }
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .error-container {
+                    padding: 3rem 1.5rem;
+                }
+
+                .error-icon {
+                    width: 80px;
+                    height: 80px;
+                    margin-bottom: 1.5rem;
+                }
+
+                .error-content p {
+                    font-size: 1rem;
+                    margin-bottom: 2rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .error-container {
+                    padding: 2rem 1.25rem;
+                }
+
+                .error-icon {
+                    width: 60px;
+                    height: 60px;
+                    margin-bottom: 1.25rem;
+                }
+
+                .error-content h2 {
+                    margin-bottom: 0.75rem;
+                }
+
+                .error-content p {
+                    font-size: 0.95rem;
+                    margin-bottom: 1.75rem;
+                }
+
+                .error-actions {
+                    flex-direction: column;
+                    width: 100%;
+                    gap: 0.75rem;
+                }
+
+                .btn {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="error-container">
+            <div class="error-content">
+                <div class="error-icon">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="15" y1="9" x2="9" y2="15"></line>
+                        <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                </div>
+
+                <h1>500</h1>
+                <h2>Server Error</h2>
+                <p>
+                    Something went wrong on our end. We're working to fix the issue. Please try again later or return
+                    to the homepage.
+                </p>
+
+                <div class="error-actions">
+                    <a href="/" class="btn btn-primary">Back to Home</a>
+                    <a href="javascript:location.reload()" class="btn btn-outline">Refresh Page</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
