@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Jovel Luna — Developer Portfolio
 
 Welcome to my personal portfolio website.
@@ -77,3 +78,5 @@ This project uses **Vite** for development and production builds. For more infor
 ## License
 
 This project is my personal developer portfolio. Feel free to explore the code and learn more about my work and experience.
+=======
+>>>>>>> d6abec5 (deploy)
