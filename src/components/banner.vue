@@ -15,12 +15,12 @@
             </p>
 
             <div class="banner-actions">
-                <a href="#professional-work" class="btn btn-primary">
-                    Professional Work
+                <a href="#projects" class="btn btn-primary">
+                    View Projects
                 </a>
 
-                <a href="#personal-projects" class="btn btn-secondary">
-                    Personal Projects
+                <a href="#case-studies" class="btn btn-secondary">
+                    Case Studies
                 </a>
 
                 <a href="#contact" class="btn btn-outline">

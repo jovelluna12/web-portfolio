@@ -1,70 +1,60 @@
 <template>
-  <section class="portfolio">
+  <section id="projects" class="projects">
+    <div class="container">
 
-    <!-- =========================================
-          PROFESSIONAL WORK
-    ========================================== -->
-    <section id="professional-work" class="work-section professional-section">
-      <div class="container">
+      <header class="section-header">
+        <div class="section-eyebrow">
+          <span class="eyebrow-dot"></span>
+          Portfolio
+        </div>
 
-        <header class="section-header">
-          <div class="section-eyebrow professional-eyebrow">
-            <span class="eyebrow-dot"></span>
-            Professional Experience
-          </div>
+        <h2>Projects</h2>
 
-          <h2>Professional Work</h2>
+        <p>
+          Production case studies from client work, followed by independent
+          projects I designed and built on my own.
+        </p>
+      </header>
+
+
+      <!-- =========================================
+            CASE STUDIES
+      ========================================== -->
+      <div id="case-studies" class="projects-group">
+        <header class="group-header">
+          <h3>Case Studies</h3>
 
           <p>
-            Selected case studies from production systems and client projects
-            I have worked on professionally. Client names, URLs, branding, and
-            project-specific details are omitted due to NDA and white-label
-            agreements.
+            Production systems and client websites I built, maintained, or
+            modernized professionally.
+          </p>
+
+          <p class="group-note">
+            <span aria-hidden="true">🔒</span>
+            Client names, URLs, branding, and project-specific details are
+            omitted due to NDA and white-label agreements.
           </p>
         </header>
 
-        <div class="professional-grid">
-          <article v-for="project in professionalProjects" :key="project.id" class="case-study-card">
-            <div class="case-study-header">
-              <div>
-                <span class="case-study-type">
-                  {{ project.type }}
-                </span>
-
-                <span class="work-badge">
-                  Production
-                </span>
-              </div>
-
+        <div class="case-studies">
+          <article v-for="project in professionalProjects" :key="project.id" class="case-study">
+            <aside class="case-study-aside">
               <span class="case-study-number">
                 {{ String(project.id).padStart(2, "0") }}
               </span>
-            </div>
 
-            <div class="case-study-content">
-              <h3>{{ project.title }}</h3>
-
-              <p class="case-study-summary">
-                {{ project.summary }}
-              </p>
-
-              <div class="case-study-section">
-                <h4>Overview</h4>
-                <p>{{ project.overview }}</p>
+              <div class="aside-block">
+                <span class="aside-label">Domain</span>
+                <span class="aside-value">{{ project.type }}</span>
               </div>
 
-              <div class="case-study-section">
-                <h4>My Contribution</h4>
-
-                <ul>
-                  <li v-for="item in project.contributions" :key="item">
-                    {{ item }}
-                  </li>
-                </ul>
+              <div class="aside-block">
+                <span class="aside-label">Status</span>
+                <span class="work-badge">Production</span>
               </div>
 
-              <div class="case-study-section">
-                <h4>Technologies</h4>
+              <div class="aside-block">
+                <span class="aside-label">Tech Stack</span>
 
                 <div class="tags">
                   <span v-for="tag in project.tags" :key="tag" class="tag">
@@ -72,70 +62,77 @@
                   </span>
                 </div>
               </div>
+            </aside>
 
-              <div class="case-study-note">
-                <span class="note-icon">🔒</span>
+            <div class="case-study-body">
+              <h4 class="case-study-title">{{ project.title }}</h4>
 
-                <span>
-                  Client and project details are intentionally omitted due to
-                  confidentiality, NDA, and white-label agreements.
-                </span>
+              <p class="case-study-summary">
+                {{ project.summary }}
+              </p>
+
+              <div class="case-study-details">
+                <div class="case-study-section">
+                  <h5>Overview</h5>
+                  <p>{{ project.overview }}</p>
+                </div>
+
+                <div class="case-study-section">
+                  <h5>My Contribution</h5>
+
+                  <ul>
+                    <li v-for="item in project.contributions" :key="item">
+                      {{ item }}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </article>
         </div>
-
       </div>
-    </section>
 
 
-    <!-- =========================================
-          PERSONAL PROJECTS
-    ========================================== -->
-    <section id="personal-projects" class="work-section personal-section">
-      <div class="container">
-
-        <header class="section-header personal-header">
-          <div class="section-eyebrow personal-eyebrow">
-            <span class="eyebrow-dot"></span>
-            Independent Development
-          </div>
-
-          <h2>Personal Projects</h2>
+      <!-- =========================================
+            INDEPENDENT PROJECTS
+      ========================================== -->
+      <div id="independent-projects" class="projects-group">
+        <header class="group-header">
+          <h3>Independent Projects</h3>
 
           <p>
-            Independent projects I build to explore technologies, experiment
-            with ideas, sharpen my skills, and demonstrate how I approach
-            software development outside of client work.
+            WordPress theme demos and personal builds, each with original
+            branding, content, and code. Every card notes whether the project
+            is an original concept or a from-scratch rebuild inspired by client
+            work.
           </p>
         </header>
 
         <div class="projects-grid">
-          <article v-for="project in personalProjects" :key="project.id" class="project-card">
-            <!-- Project Images -->
-            <div v-if="project.images.length" class="project-gallery">
+          <article v-for="project in independentProjects" :key="project.id" class="project-card">
+            <div v-if="project.images?.length" class="project-gallery">
               <img v-for="(image, index) in project.images" :key="index" :src="image"
                 :alt="`${project.title} screenshot ${index + 1}`" class="project-image" loading="lazy"
                 @click="openImage(image)" />
             </div>
 
-            <div v-else class="project-placeholder">
-              <span>{{ project.title }}</span>
-            </div>
-
             <div class="project-content">
-
               <div class="project-meta">
-                <span class="personal-badge">
-                  Personal Project
-                </span>
+                <span class="kind-badge">{{ project.kind }}</span>
+                <span class="project-origin">{{ project.origin }}</span>
               </div>
 
-              <h3>{{ project.title }}</h3>
+              <h4 class="project-title">{{ project.title }}</h4>
 
-              <p class="description">
-                {{ project.description }}
+              <p class="project-summary">
+                {{ project.summary }}
               </p>
+
+              <ul class="highlights">
+                <li v-for="item in project.highlights" :key="item">
+                  {{ item }}
+                </li>
+              </ul>
 
               <div class="tags">
                 <span v-for="tag in project.tags" :key="tag" class="tag">
@@ -156,13 +153,12 @@
                   <span>↗</span>
                 </a>
               </div>
-
             </div>
           </article>
         </div>
-
       </div>
-    </section>
+
+    </div>
 
 
     <!-- Image Lightbox -->
@@ -333,93 +329,163 @@ const professionalProjects = [
   },
 ]
 
-const personalProjects = [
+const independentProjects = [
   {
     id: 1,
-    title: "JCL Dashboard",
-    description:
-      "A modular, headless Content Management System (CMS) built with Laravel, designed to manage content through an admin dashboard and expose content through a RESTful API.",
-    images: [
-      "/images/jcl-dashboard/landing-page.bmp",
-      "/images/jcl-dashboard/posts-management.bmp",
+    title: "Harrow Creek Water Authority",
+    kind: "WordPress Theme · Water Utility",
+    origin: "Inspired by professional experience",
+    summary:
+      "A classic PHP WordPress theme for a fictional municipal water utility, drawing on my professional experience building a real water-utility website (client details withheld) and rebuilt independently from scratch to showcase that domain expertise.",
+    highlights: [
+      "Original branding, content, and code; no client assets reused",
+      "Teal/brass palette with Fraunces + Work Sans typography",
+      "Core pages for services, billing, and contact/support",
     ],
-    tags: [
-      "PHP",
-      "Laravel",
-      "Vite",
-      "Vue",
-      "API",
-      "CMS",
-    ],
-    github:
-      "https://github.com/jovelluna12/jcl-dashboard",
+    tags: ["WordPress", "Classic Theme", "PHP", "CSS"],
+    demo: "https://waterdistrict.jovelluna.com/",
   },
 
   {
     id: 2,
-    title: "WordPress Starter Theme",
-    description:
-      "A modern WordPress starter theme powered by Vite + Sass with clean architecture and Gutenberg compatibility.",
-    images: [],
-    tags: [
-      "PHP",
-      "WordPress",
-      "Vite",
-      "SCSS",
-      "JavaScript",
+    title: "Ironclad Auto Repair",
+    kind: "WordPress Theme · Auto Repair Shop",
+    origin: "Inspired by professional experience",
+    summary:
+      "A block/FSE WordPress child theme for a fictional independent auto repair shop, drawing on my professional experience building a real auto repair shop website (client details withheld) and rebuilt independently to demonstrate that experience in a public portfolio piece.",
+    highlights: [
+      "Custom post types for services and team members",
+      "Graphite/amber brand system",
+      "Template parts, reusable blocks, and theme.json design tokens",
     ],
-    github:
-      "https://github.com/jovelluna12/jovel-starter-theme",
+    tags: ["WordPress", "Full Site Editing", "Custom Post Types", "theme.json"],
+    demo: "https://carrepair.jovelluna.com/",
   },
 
   {
     id: 3,
-    title: "Sample Resort Website",
-    description:
-      "A responsive website for a fictional resort showcasing amenities and booking options.",
-    images: [],
-    tags: [
-      "Vue",
-      "CSS",
-      "JavaScript",
+    title: "Palma Cove Resort",
+    kind: "WordPress Theme · Beach Resort",
+    origin: "Original concept",
+    summary:
+      "A full-site-editing WordPress child theme for a fictional beachfront resort.",
+    highlights: [
+      "Sand/lagoon/coral color system with Bodoni Moda + Karla typography",
+      "Photo gallery built with native gallery blocks",
+      "Reservation-inquiry form with nonce-based submission handling",
     ],
-    demo:
-      "https://sample-resort-portfolio.vercel.app/",
-    github:
-      "https://github.com/jovelluna12/sample-resort-portfolio",
+    tags: ["WordPress", "Full Site Editing", "Gallery Blocks", "PHP"],
+    demo: "https://palma-cove.jovelluna.com/",
   },
 
   {
     id: 4,
-    title: "Sample Restaurant Website",
-    description:
-      "A responsive restaurant website showcasing menu items, services, and reservations.",
-    images: [],
-    tags: [
-      "Vue",
-      "CSS",
-      "JavaScript",
+    title: "Northbridge Data Solutions",
+    kind: "WordPress Theme · B2B Consulting",
+    origin: "Inspired by professional experience",
+    summary:
+      "A block/FSE WordPress child theme for a fictional data-conversion and database consulting firm, drawing on my professional experience building a real B2B consulting website (client details withheld) and rebuilt independently to showcase that experience.",
+    highlights: [
+      "Navy/blue enterprise design system with Sora + Manrope typography",
+      "Reusable block patterns for CTA bands and client quotes",
+      "Consultation-request contact form",
     ],
-    demo:
-      "https://sample-restaurant-portfolio.vercel.app/",
-    github:
-      "https://github.com/jovelluna12/sample-restaurant-portfolio",
+    tags: ["WordPress", "Full Site Editing", "Block Patterns", "PHP"],
+    demo: "https://northridge.jovelluna.com/",
+  },
+
+  {
+    id: 5,
+    title: "Kestrel Ridge Nature Park",
+    kind: "WordPress Theme · Nature Park",
+    origin: "Original concept",
+    summary:
+      "A full-site-editing WordPress child theme for a fictional public nature park.",
+    highlights: [
+      "Forest-green/amber-gold design system with Cormorant Garamond + Nunito Sans",
+      "Trail-guide page and a \"Field Notes\" blog with seeded posts",
+      "Contact form for visitor and group-visit inquiries",
+    ],
+    tags: ["WordPress", "Full Site Editing", "Blog", "PHP"],
+    demo: "https://nature.jovelluna.com/",
+  },
+
+  {
+    id: 6,
+    title: "JCL Dashboard",
+    kind: "Web App · Headless CMS",
+    origin: "Personal project",
+    summary:
+      "A modular, headless content management system built with Laravel.",
+    highlights: [
+      "Admin dashboard for managing content",
+      "Content exposed through a RESTful API",
+      "Vue frontend built with Vite",
+    ],
+    images: [
+      "/images/jcl-dashboard/landing-page.bmp",
+      "/images/jcl-dashboard/posts-management.bmp",
+    ],
+    tags: ["PHP", "Laravel", "Vite", "Vue", "API", "CMS"],
+    github: "https://github.com/jovelluna12/jcl-dashboard",
+  },
+
+  {
+    id: 7,
+    title: "WordPress Starter Theme",
+    kind: "Developer Tool · WordPress",
+    origin: "Personal project",
+    summary:
+      "A modern starter theme for kicking off custom WordPress theme builds.",
+    highlights: [
+      "Vite + Sass build pipeline",
+      "Clean, organized theme architecture",
+      "Gutenberg compatible",
+    ],
+    tags: ["PHP", "WordPress", "Vite", "SCSS", "JavaScript"],
+    github: "https://github.com/jovelluna12/jovel-starter-theme",
+  },
+
+  {
+    id: 8,
+    title: "Sample Resort Website",
+    kind: "Website · Resort",
+    origin: "Personal project",
+    summary:
+      "A responsive Vue website for a fictional resort.",
+    highlights: [
+      "Showcases resort amenities",
+      "Presents booking options",
+      "Responsive layout across devices",
+    ],
+    tags: ["Vue", "CSS", "JavaScript"],
+    demo: "https://sample-resort-portfolio.vercel.app/",
+    github: "https://github.com/jovelluna12/sample-resort-portfolio",
+  },
+
+  {
+    id: 9,
+    title: "Sample Restaurant Website",
+    kind: "Website · Restaurant",
+    origin: "Personal project",
+    summary:
+      "A responsive Vue website for a fictional restaurant.",
+    highlights: [
+      "Showcases menu items and services",
+      "Includes a reservations section",
+      "Responsive layout across devices",
+    ],
+    tags: ["Vue", "CSS", "JavaScript"],
+    demo: "https://sample-restaurant-portfolio.vercel.app/",
+    github: "https://github.com/jovelluna12/sample-restaurant-portfolio",
   },
 ]
 </script>
 
 <style scoped>
-.portfolio {
-  color: var(--color-text);
-}
-
-/* =========================================
-   SHARED SECTION
-========================================= */
-
-.work-section {
-  position: relative;
+.projects {
   padding: 7rem 1.5rem;
+  color: var(--color-text);
 }
 
 .container {
@@ -428,11 +494,15 @@ const personalProjects = [
   margin: 0 auto;
 }
 
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
 .section-header {
   max-width: 760px;
   margin: 0 auto 4rem;
   text-align: center;
-  scroll-margin-top: 3rem;
 }
 
 .section-header h2 {
@@ -458,7 +528,11 @@ const personalProjects = [
 
   padding: 0.4rem 0.8rem;
 
+  border: 1px solid rgba(37, 99, 235, 0.15);
   border-radius: 999px;
+
+  background: rgba(37, 99, 235, 0.05);
+  color: var(--color-accent);
 
   font-size: 0.75rem;
   font-weight: 700;
@@ -470,32 +544,97 @@ const personalProjects = [
   width: 7px;
   height: 7px;
   border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
 
 /* =========================================
-   PROFESSIONAL WORK
+   GROUPS
 ========================================= */
 
-.professional-eyebrow {
-  color: var(--color-accent);
-  background: rgba(37, 99, 235, 0.05);
+.projects-group {
+  scroll-margin-top: 5rem;
+}
+
+.projects-group + .projects-group {
+  margin-top: 6rem;
+  padding-top: 6rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.group-header {
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+
+.group-header h3 {
+  margin-bottom: 0.5rem;
+  color: var(--color-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.group-header p {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.group-note {
+  display: flex;
+  gap: 0.5rem;
+
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 10px;
+
+  background: rgba(37, 99, 235, 0.04);
+
+  font-size: 0.85rem;
+}
+
+
+/* =========================================
+   SHARED: TAGS
+========================================= */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.3rem 0.7rem;
+
   border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 999px;
+
+  background: rgba(37, 99, 235, 0.05);
+  color: var(--color-accent);
+
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
-.professional-eyebrow .eyebrow-dot {
-  background: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+
+/* =========================================
+   CASE STUDIES
+========================================= */
+
+.case-studies {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
 }
 
-.professional-grid {
+.case-study {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
+  grid-template-columns: 280px 1fr;
 
-.case-study-card {
-  position: relative;
   overflow: hidden;
 
   background: var(--color-background);
@@ -510,116 +649,107 @@ const personalProjects = [
     border-color 0.25s ease;
 }
 
-.case-study-card::before {
-  content: "";
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  height: 3px;
-
-  background: #2563eb;
-}
-
-.case-study-card:hover {
-  transform: translateY(-5px);
-
+.case-study:hover {
+  transform: translateY(-4px);
   border-color: rgba(37, 99, 235, 0.3);
-
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
 }
 
-.case-study-header {
+.case-study-aside {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 1.25rem;
 
-  padding: 1.5rem;
+  padding: 2rem 1.75rem;
 
   background: var(--color-background-soft);
-  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-left: 4px solid #2563eb;
 }
 
-.case-study-header>div {
+.case-study-number {
+  color: var(--color-accent);
+
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.aside-block {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.6rem;
+  gap: 0.4rem;
 }
 
-.case-study-type {
-  color: var(--color-heading);
+.aside-label {
+  color: var(--color-text-muted);
 
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+}
+
+.aside-value {
+  color: var(--color-heading);
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .work-badge {
   display: inline-flex;
 
-  padding: 0.25rem 0.6rem;
+  padding: 0.2rem 0.6rem;
 
-  border: 1px solid rgba(37, 99, 235, 0.2);
   border-radius: 999px;
 
-  background: rgba(37, 99, 235, 0.05);
-  color: var(--color-accent);
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
 
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 600;
-
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
-.case-study-number {
-  color: var(--color-text);
-  opacity: 0.25;
-
-  font-size: 1.5rem;
-  font-weight: 700;
+.case-study-body {
+  padding: 2rem 2.25rem;
 }
 
-.case-study-content {
-  padding: 1.75rem;
-}
-
-.case-study-content h3 {
-  margin: 0 0 0.75rem;
+.case-study-title {
+  margin-bottom: 0.6rem;
 
   color: var(--color-heading);
 
-  font-size: 1.4rem;
+  font-size: 1.45rem;
+  font-weight: 700;
   line-height: 1.3;
 }
 
 .case-study-summary {
   margin-bottom: 1.75rem;
 
-  color: var(--color-text-muted);
+  color: var(--color-text);
 
+  font-size: 1.02rem;
   line-height: 1.7;
 }
 
-.case-study-section {
-  margin-bottom: 1.5rem;
+.case-study-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
-.case-study-section h4 {
-  margin: 0 0 0.6rem;
+.case-study-section h5 {
+  margin-bottom: 0.6rem;
 
   color: var(--color-heading);
 
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
-
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
 .case-study-section p,
@@ -628,69 +758,29 @@ const personalProjects = [
   line-height: 1.65;
 }
 
-.case-study-section p {
-  margin: 0;
-}
-
 .case-study-section ul {
-  margin: 0;
-  padding-left: 1.25rem;
+  padding-left: 1.2rem;
 }
 
 .case-study-section li {
   margin-bottom: 0.3rem;
 }
 
-/* NDA Notice */
-
-.case-study-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-
-  padding: 1rem;
-
-  background: rgba(37, 99, 235, 0.04);
-  border: 1px solid rgba(37, 99, 235, 0.12);
-  border-radius: 10px;
-
-  color: var(--color-text-muted);
-
-  font-size: 0.8rem;
-  line-height: 1.5;
-}
-
-.note-icon {
-  flex-shrink: 0;
-}
-
 
 /* =========================================
-   PERSONAL PROJECTS
+   INDEPENDENT PROJECTS
 ========================================= */
-
-.personal-header {
-  margin-top: 0;
-}
-
-.personal-eyebrow {
-  color: var(--color-accent);
-  background: rgba(37, 99, 235, 0.05);
-  border: 1px solid rgba(37, 99, 235, 0.15);
-}
-
-.personal-eyebrow .eyebrow-dot {
-  background: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-}
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
 }
 
 .project-card {
+  display: flex;
+  flex-direction: column;
+
   overflow: hidden;
 
   background: var(--color-background);
@@ -706,17 +796,10 @@ const personalProjects = [
 }
 
 .project-card:hover {
-  transform: translateY(-7px);
-
+  transform: translateY(-6px);
   border-color: rgba(37, 99, 235, 0.3);
-
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
 }
-
-
-/* =========================================
-   PROJECT GALLERY
-========================================= */
 
 .project-gallery {
   display: grid;
@@ -732,7 +815,7 @@ const personalProjects = [
   display: block;
 
   width: 100%;
-  height: 180px;
+  height: 150px;
 
   object-fit: cover;
 
@@ -745,115 +828,88 @@ const personalProjects = [
   transform: scale(1.04);
 }
 
-.project-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 180px;
-
-  background: var(--color-background-soft);
-
-  color: var(--color-text-muted);
-
-  font-weight: 600;
-}
-
-
-/* =========================================
-   PROJECT CONTENT
-========================================= */
-
 .project-content {
-  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  padding: 1.6rem;
 }
 
 .project-meta {
-  margin-bottom: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin-bottom: 0.9rem;
 }
 
-.personal-badge {
+.kind-badge {
   display: inline-flex;
 
-  padding: 0.3rem 0.65rem;
+  padding: 0.25rem 0.6rem;
 
-  border: 2px solid #2563eb;
+  border: 1px solid var(--color-accent);
   border-radius: 999px;
 
-  background: rgba(37, 99, 235, 0.05);
   color: var(--color-accent);
 
   font-size: 0.7rem;
   font-weight: 600;
-
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
-.project-content h3 {
-  margin: 0 0 0.75rem;
+.project-origin {
+  color: var(--color-text-muted);
+
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.project-title {
+  margin-bottom: 0.5rem;
 
   color: var(--color-heading);
 
-  font-size: 1.4rem;
+  font-size: 1.25rem;
+  font-weight: 700;
   line-height: 1.3;
 }
 
-.description {
+.project-summary {
+  margin-bottom: 1rem;
+
+  color: var(--color-text);
+
+  line-height: 1.65;
+}
+
+.highlights {
   margin-bottom: 1.25rem;
+  padding-left: 1.1rem;
 
   color: var(--color-text-muted);
 
-  line-height: 1.7;
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
 
+.highlights li {
+  margin-bottom: 0.25rem;
+}
 
-/* =========================================
-   TECHNOLOGY TAGS
-========================================= */
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-
+.project-content .tags {
   margin-bottom: 1.5rem;
 }
 
-.tag {
-  padding: 0.35rem 0.75rem;
-
-  background: rgba(37, 99, 235, 0.05);
-  border: 1px solid rgba(37, 99, 235, 0.15);
-  border-radius: 999px;
-
-  color: var(--color-accent);
-
-  font-size: 0.8rem;
-  font-weight: 600;
-
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.tag:hover {
-  background: rgba(37, 99, 235, 0.1);
-  border-color: rgba(37, 99, 235, 0.3);
-}
-
-
-/* =========================================
-   PROJECT LINKS
-========================================= */
-
 .links {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
   gap: 0.75rem;
 
-  padding-top: 0.25rem;
+  margin-top: auto;
 }
 
 .project-link {
@@ -864,7 +920,7 @@ const personalProjects = [
 
   min-width: 100px;
 
-  padding: 0.6rem 0.9rem;
+  padding: 0.55rem 0.9rem;
 
   border: 2px solid var(--color-outline);
   border-radius: 0.5rem;
@@ -887,29 +943,22 @@ const personalProjects = [
 
 .project-link:hover {
   transform: translateY(-2px);
-
   color: var(--color-text-strong);
-
   border-color: var(--color-outline-hover);
-
   background: var(--color-hover-tint);
 }
 
 .primary-link {
   color: #ffffff;
-
   background-color: #2563eb;
   border-color: #2563eb;
-
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
 .primary-link:hover {
   color: #ffffff;
-
   background-color: #1d4ed8;
   border-color: #1d4ed8;
-
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
 }
 
@@ -955,16 +1004,30 @@ const personalProjects = [
    RESPONSIVE
 ========================================= */
 
-@media (max-width: 900px) {
-
-  .professional-grid,
+@media (max-width: 1024px) {
   .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-study {
     grid-template-columns: 1fr;
+  }
+
+  .case-study-aside {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+@media (max-width: 768px) {
+  .case-study-details {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
 @media (max-width: 640px) {
-  .work-section {
+  .projects {
     padding: 5rem 1rem;
   }
 
@@ -972,15 +1035,22 @@ const personalProjects = [
     margin-bottom: 3rem;
   }
 
-  .section-header h2 {
-    font-size: 2rem;
-  }
-
   .section-header p {
     font-size: 0.95rem;
   }
 
-  .case-study-content,
+  .projects-group + .projects-group {
+    margin-top: 4rem;
+    padding-top: 4rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .case-study-aside,
+  .case-study-body,
   .project-content {
     padding: 1.35rem;
   }
@@ -989,18 +1059,8 @@ const personalProjects = [
     grid-template-columns: 1fr;
   }
 
-  .project-image,
-  .project-placeholder {
+  .project-image {
     height: 200px;
-  }
-
-  .professional-grid,
-  .projects-grid {
-    gap: 1.5rem;
-  }
-
-  .links {
-    width: 100%;
   }
 
   .project-link {

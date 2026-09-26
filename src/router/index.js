@@ -24,7 +24,7 @@ const router = createRouter({
     ],
     scrollBehavior(to, from, savedPosition) {
         if (to.hash) {
-            // Smooth scroll to anchor links (for sections like #professional-work)
+            // Smooth scroll to anchor links (for sections like #projects)
             return {
                 el: to.hash,
                 behavior: 'smooth'
