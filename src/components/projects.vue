@@ -11,16 +11,106 @@
         <h2>Projects</h2>
 
         <p>
-          Production case studies from client work, followed by independent
-          projects I designed and built on my own.
+          Independent projects I designed and built on my own, alongside
+          production case studies from client work.
         </p>
       </header>
 
 
       <!-- =========================================
+            TABS
+      ========================================== -->
+      <div ref="tabList" class="tabs" role="tablist" aria-label="Project categories" @keydown="onTabKeydown">
+        <button v-for="tab in tabs" :key="tab.id" :id="`tab-${tab.id}`" type="button" role="tab" class="tab"
+          :class="{ active: activeTab === tab.id }" :aria-selected="activeTab === tab.id"
+          :aria-controls="tab.id" :tabindex="activeTab === tab.id ? 0 : -1" @click="activeTab = tab.id">
+          {{ tab.label }}
+          <span class="tab-count">{{ tab.count }}</span>
+        </button>
+      </div>
+
+
+      <!-- =========================================
+            INDEPENDENT PROJECTS
+      ========================================== -->
+      <div v-show="activeTab === 'independent-projects'" id="independent-projects" class="projects-group"
+        role="tabpanel" aria-labelledby="tab-independent-projects">
+        <header class="group-header">
+          <h3>Independent Projects</h3>
+
+          <p>
+            WordPress theme demos and personal builds, each with original
+            branding, content, and code. Every card notes whether the project
+            is an original concept or a from-scratch rebuild inspired by client
+            work.
+          </p>
+        </header>
+
+        <div class="filters" role="group" aria-label="Filter independent projects by technology">
+          <button v-for="tag in filterOptions['independent-projects']" :key="tag" type="button" class="filter-chip"
+            :class="{ active: activeFilters['independent-projects'] === tag }"
+            :aria-pressed="activeFilters['independent-projects'] === tag"
+            @click="activeFilters['independent-projects'] = tag">
+            {{ tag }}
+          </button>
+        </div>
+
+        <div class="projects-grid">
+          <article v-for="project in filteredIndependentProjects" :key="project.id" class="project-card">
+            <div v-if="project.images?.length" class="project-gallery">
+              <img v-for="(image, index) in project.images" :key="index" :src="image"
+                :alt="`${project.title} screenshot ${index + 1}`" class="project-image" loading="lazy"
+                @click="openImage(image)" />
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="kind-badge">{{ project.kind }}</span>
+                <span class="project-origin">{{ project.origin }}</span>
+              </div>
+
+              <h4 class="project-title">{{ project.title }}</h4>
+
+              <p class="project-summary">
+                {{ project.summary }}
+              </p>
+
+              <ul class="highlights">
+                <li v-for="item in project.highlights" :key="item">
+                  {{ item }}
+                </li>
+              </ul>
+
+              <div class="tags">
+                <span v-for="tag in project.tags" :key="tag" class="tag">
+                  {{ tag }}
+                </span>
+              </div>
+
+              <div class="links">
+                <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener noreferrer"
+                  class="project-link primary-link">
+                  Live Demo
+                  <span>↗</span>
+                </a>
+
+                <a v-if="project.github" :href="project.github" target="_blank" rel="noopener noreferrer"
+                  class="project-link">
+                  GitHub
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+
+      <!-- =========================================
             CASE STUDIES
       ========================================== -->
-      <div id="case-studies" class="projects-group">
+      <div v-show="activeTab === 'case-studies'" id="case-studies" class="projects-group" role="tabpanel"
+        aria-labelledby="tab-case-studies">
         <header class="group-header">
           <h3>Case Studies</h3>
 
@@ -36,8 +126,17 @@
           </p>
         </header>
 
+        <div class="filters" role="group" aria-label="Filter case studies by technology">
+          <button v-for="tag in filterOptions['case-studies']" :key="tag" type="button" class="filter-chip"
+            :class="{ active: activeFilters['case-studies'] === tag }"
+            :aria-pressed="activeFilters['case-studies'] === tag"
+            @click="activeFilters['case-studies'] = tag">
+            {{ tag }}
+          </button>
+        </div>
+
         <div class="case-studies">
-          <article v-for="project in professionalProjects" :key="project.id" class="case-study">
+          <article v-for="project in filteredProfessionalProjects" :key="project.id" class="case-study">
             <aside class="case-study-aside">
               <span class="case-study-number">
                 {{ String(project.id).padStart(2, "0") }}
@@ -92,72 +191,6 @@
         </div>
       </div>
 
-
-      <!-- =========================================
-            INDEPENDENT PROJECTS
-      ========================================== -->
-      <div id="independent-projects" class="projects-group">
-        <header class="group-header">
-          <h3>Independent Projects</h3>
-
-          <p>
-            WordPress theme demos and personal builds, each with original
-            branding, content, and code. Every card notes whether the project
-            is an original concept or a from-scratch rebuild inspired by client
-            work.
-          </p>
-        </header>
-
-        <div class="projects-grid">
-          <article v-for="project in independentProjects" :key="project.id" class="project-card">
-            <div v-if="project.images?.length" class="project-gallery">
-              <img v-for="(image, index) in project.images" :key="index" :src="image"
-                :alt="`${project.title} screenshot ${index + 1}`" class="project-image" loading="lazy"
-                @click="openImage(image)" />
-            </div>
-
-            <div class="project-content">
-              <div class="project-meta">
-                <span class="kind-badge">{{ project.kind }}</span>
-                <span class="project-origin">{{ project.origin }}</span>
-              </div>
-
-              <h4 class="project-title">{{ project.title }}</h4>
-
-              <p class="project-summary">
-                {{ project.summary }}
-              </p>
-
-              <ul class="highlights">
-                <li v-for="item in project.highlights" :key="item">
-                  {{ item }}
-                </li>
-              </ul>
-
-              <div class="tags">
-                <span v-for="tag in project.tags" :key="tag" class="tag">
-                  {{ tag }}
-                </span>
-              </div>
-
-              <div class="links">
-                <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener noreferrer"
-                  class="project-link primary-link">
-                  Live Demo
-                  <span>↗</span>
-                </a>
-
-                <a v-if="project.github" :href="project.github" target="_blank" rel="noopener noreferrer"
-                  class="project-link">
-                  GitHub
-                  <span>↗</span>
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-
     </div>
 
 
@@ -170,7 +203,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, computed, nextTick, onMounted, onBeforeUnmount } from "vue"
 
 const selectedImage = ref(null)
 
@@ -272,21 +305,22 @@ const professionalProjects = [
   {
     id: 4,
     type: "WordPress Development",
-    title: "Corporate & Business Websites — 10+ Sites",
+    title: "WordPress Development — 10+ Production Websites",
     summary:
-      "Developed and maintained 10+ production WordPress websites for businesses across different industries, adapting implementations to varying design and content requirements.",
+      "Developed and maintained 10+ production WordPress websites for businesses across different industries, working within a white-label development workflow and adapting each implementation to its design, content, and functional requirements.",
     overview:
-      "Contributed to the development and maintenance of multiple corporate and business websites through a white-label development workflow. Work included implementing designs, customizing WordPress themes and functionality, maintaining existing websites, and ensuring responsive, performant, and user-friendly experiences across different projects.",
+      "This case study represents a collection of professional WordPress projects rather than a single website. I contributed to the development and maintenance of 10+ production websites, working from provided designs and requirements to implement responsive interfaces, customize WordPress themes and functionality, integrate frontend components, and maintain existing sites in production.",
     contributions: [
       "Developed and customized 10+ production WordPress websites",
       "Implemented responsive interfaces based on design specifications",
-      "Customized themes and extended WordPress functionality",
+      "Customized WordPress themes, templates, and functionality",
       "Integrated JavaScript and frontend components",
-      "Troubleshot and maintained existing WordPress websites",
-      "Improved website performance, usability, and responsive behavior",
+      "Maintained and troubleshot existing production WordPress websites",
+      "Resolved responsive, usability, and frontend implementation issues",
     ],
     tags: [
       "WordPress",
+      "CMS",
       "PHP",
       "JavaScript",
       "jQuery",
@@ -300,32 +334,20 @@ const professionalProjects = [
 
   {
     id: 5,
-    type: "WordPress eCommerce",
-    title: "WordPress eCommerce — WooCommerce",
+    type: "WordPress + WooCommerce · Beauty & Nail Products",
+    title: "Beauty & Nail Essentials Brand",
     summary:
-      "Developed a production WordPress eCommerce website using WooCommerce to support online product and customer workflows.",
+      "A full WooCommerce storefront built end-to-end for a beauty and nail products brand, covering theme setup, product catalog, and checkout/payment flow.",
     overview:
-      "Contributed to the development and maintenance of a production WordPress eCommerce website built with WooCommerce. Work involved implementing and customizing functionality based on project requirements while maintaining the existing website and ensuring a responsive user experience.",
+      "Built the store from the ground up on WordPress and WooCommerce, from theme setup through the product catalog to checkout and payment. Client name and live URL are withheld under client confidentiality.",
     contributions: [
-      "Developed and customized a production WooCommerce website",
-      "Implemented functionality based on project requirements",
-      "Customized WordPress themes and WooCommerce functionality",
-      "Integrated frontend components and interactive functionality",
-      "Troubleshot and resolved issues within the existing website",
-      "Maintained responsive behavior and overall website usability",
+      "Full WordPress + WooCommerce build from the ground up",
+      "Product catalog and category structure for gel polish, nail glue gel, and related items",
+      "Checkout and payment integration for online ordering",
     ],
-    tags: [
-      "WordPress",
-      "WooCommerce",
-      "PHP",
-      "JavaScript",
-      "jQuery",
-      "HTML",
-      "SCSS",
-      "Git",
-    ],
+    tags: ["WordPress", "WooCommerce", "PHP", "CMS", "E-commerce"],
     nda:
-      "Client name, URL, branding, and project-specific details are omitted due to NDA and white-label agreements.",
+      "Client names, URLs, branding, and project-specific details are omitted due to NDA and white-label agreements.",
   },
 ]
 
@@ -342,7 +364,7 @@ const independentProjects = [
       "Teal/brass palette with Fraunces + Work Sans typography",
       "Core pages for services, billing, and contact/support",
     ],
-    tags: ["WordPress", "Classic Theme", "PHP", "CSS"],
+    tags: ["WordPress", "CMS", "Classic Theme", "PHP", "CSS"],
     demo: "https://waterdistrict.jovelluna.com/",
   },
 
@@ -358,7 +380,7 @@ const independentProjects = [
       "Graphite/amber brand system",
       "Template parts, reusable blocks, and theme.json design tokens",
     ],
-    tags: ["WordPress", "Full Site Editing", "Custom Post Types", "theme.json"],
+    tags: ["WordPress", "Block Patterns", "Full Site Editing", "Custom Post Types", "CMS"],
     demo: "https://carrepair.jovelluna.com/",
   },
 
@@ -374,7 +396,7 @@ const independentProjects = [
       "Photo gallery built with native gallery blocks",
       "Reservation-inquiry form with nonce-based submission handling",
     ],
-    tags: ["WordPress", "Full Site Editing", "Gallery Blocks", "PHP"],
+    tags: ["WordPress", "Block Patterns", "Full Site Editing", "CMS", "PHP"],
     demo: "https://palma-cove.jovelluna.com/",
   },
 
@@ -390,7 +412,7 @@ const independentProjects = [
       "Reusable block patterns for CTA bands and client quotes",
       "Consultation-request contact form",
     ],
-    tags: ["WordPress", "Full Site Editing", "Block Patterns", "PHP"],
+    tags: ["WordPress", "Full Site Editing", "Block Patterns", "CMS", "PHP"],
     demo: "https://northridge.jovelluna.com/",
   },
 
@@ -406,7 +428,7 @@ const independentProjects = [
       "Trail-guide page and a \"Field Notes\" blog with seeded posts",
       "Contact form for visitor and group-visit inquiries",
     ],
-    tags: ["WordPress", "Full Site Editing", "Blog", "PHP"],
+    tags: ["WordPress", "Block Patterns", "Full Site Editing", "Blog", "CMS", "PHP"],
     demo: "https://nature.jovelluna.com/",
   },
 
@@ -442,7 +464,7 @@ const independentProjects = [
       "Clean, organized theme architecture",
       "Gutenberg compatible",
     ],
-    tags: ["PHP", "WordPress", "Vite", "SCSS", "JavaScript"],
+    tags: ["PHP", "WordPress", "Block Patterns", "CMS", "Vite", "SCSS", "JavaScript"],
     github: "https://github.com/jovelluna12/jovel-starter-theme",
   },
 
@@ -480,6 +502,91 @@ const independentProjects = [
     github: "https://github.com/jovelluna12/sample-restaurant-portfolio",
   },
 ]
+
+/* =========================================
+   TABS
+========================================= */
+
+const tabs = [
+  { id: "independent-projects", label: "Independent Projects", count: independentProjects.length },
+  { id: "case-studies", label: "Case Studies", count: professionalProjects.length },
+]
+
+const activeTab = ref(tabs[0].id)
+const tabList = ref(null)
+
+/* =========================================
+   TECH STACK FILTERS
+========================================= */
+
+const ALL = "All"
+
+// Unique tags across a list, most-used first, then alphabetical
+const tagsFor = (projects) => {
+  const counts = new Map()
+
+  projects.flatMap((project) => project.tags ?? []).forEach((tag) => {
+    counts.set(tag, (counts.get(tag) ?? 0) + 1)
+  })
+
+  const sorted = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+
+  return [ALL, ...sorted.map(([tag]) => tag)]
+}
+
+const filterOptions = {
+  "independent-projects": tagsFor(independentProjects),
+  "case-studies": tagsFor(professionalProjects),
+}
+
+const activeFilters = ref({
+  "independent-projects": ALL,
+  "case-studies": ALL,
+})
+
+const byTag = (projects, tag) =>
+  tag === ALL ? projects : projects.filter((project) => project.tags?.includes(tag))
+
+const filteredIndependentProjects = computed(() =>
+  byTag(independentProjects, activeFilters.value["independent-projects"])
+)
+
+const filteredProfessionalProjects = computed(() =>
+  byTag(professionalProjects, activeFilters.value["case-studies"])
+)
+
+const onTabKeydown = (event) => {
+  const keys = { ArrowRight: 1, ArrowLeft: -1 }
+  if (!(event.key in keys)) return
+
+  event.preventDefault()
+
+  const index = tabs.findIndex((tab) => tab.id === activeTab.value)
+  const next = tabs[(index + keys[event.key] + tabs.length) % tabs.length]
+
+  activeTab.value = next.id
+  document.getElementById(`tab-${next.id}`)?.focus()
+}
+
+// Open the matching tab when a link points at one (e.g. the banner's #case-studies button)
+const selectTabFromHash = async () => {
+  const id = window.location.hash.slice(1)
+  if (!tabs.some((tab) => tab.id === id)) return
+
+  activeTab.value = id
+
+  await nextTick()
+  tabList.value?.scrollIntoView({ behavior: "smooth" })
+}
+
+onMounted(() => {
+  selectTabFromHash()
+  window.addEventListener("hashchange", selectTabFromHash)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener("hashchange", selectTabFromHash)
+})
 </script>
 
 <style scoped>
@@ -553,14 +660,126 @@ const independentProjects = [
    GROUPS
 ========================================= */
 
-.projects-group {
-  scroll-margin-top: 5rem;
+.tabs {
+  display: flex;
+  gap: 0.35rem;
+
+  width: fit-content;
+  margin: 0 auto 3.5rem;
+  padding: 0.35rem;
+
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+
+  background: var(--color-background-soft);
+
+  scroll-margin-top: 6rem;
 }
 
-.projects-group + .projects-group {
-  margin-top: 6rem;
-  padding-top: 6rem;
-  border-top: 1px solid var(--color-border);
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.65rem 1.25rem;
+
+  border: none;
+  border-radius: 999px;
+
+  background: transparent;
+  color: var(--color-text-secondary);
+
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--color-text-strong);
+}
+
+.tab.active {
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.tab:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.tab-count {
+  padding: 0.05rem 0.5rem;
+
+  border-radius: 999px;
+
+  background: var(--color-accent-soft-bg);
+  color: var(--color-accent-soft-text);
+
+  font-size: 0.75rem;
+}
+
+.tab.active .tab-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  margin-bottom: 2rem;
+}
+
+.filter-chip {
+  padding: 0.35rem 0.8rem;
+
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 999px;
+
+  background: rgba(37, 99, 235, 0.05);
+  color: var(--color-accent);
+
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.filter-chip:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+.filter-chip.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.filter-chip:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
 }
 
 .group-header {
@@ -1038,9 +1257,16 @@ const independentProjects = [
     font-size: 0.95rem;
   }
 
-  .projects-group + .projects-group {
-    margin-top: 4rem;
-    padding-top: 4rem;
+  .tabs {
+    width: 100%;
+    margin-bottom: 2.5rem;
+  }
+
+  .tab {
+    flex: 1;
+    justify-content: center;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
   }
 
   .projects-grid {
