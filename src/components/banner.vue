@@ -15,13 +15,12 @@
             </p>
 
             <div class="banner-actions">
-                <a href="#projects" class="btn btn-primary">
+                <RouterLink
+                    class="btn btn-primary"
+                    :to="{ name: 'projects' }"
+                >
                     View Projects
-                </a>
-
-                <a href="#case-studies" class="btn btn-secondary">
-                    Case Studies
-                </a>
+                </RouterLink>
 
                 <a href="#contact" class="btn btn-outline">
                     Get in Touch
