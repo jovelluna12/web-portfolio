@@ -564,7 +564,6 @@ const independentProjects = [
 }
 
 .group-header {
-  max-width: 720px;
   margin-bottom: 2.5rem;
 }
 

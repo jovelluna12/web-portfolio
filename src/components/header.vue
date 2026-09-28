@@ -1,9 +1,23 @@
+<script setup>
+import { ref } from "vue";
+
+const menuOpen = ref(false);
+
+const closeMenu = () => {
+  menuOpen.value = false;
+};
+</script>
+
 <template>
   <header>
     <nav class="header-nav-container">
-      <a href="#" class="heading-name">
+      <RouterLink
+        :to="{ name: 'home' }"
+        class="heading-name"
+        @click="closeMenu"
+      >
         Jovel Luna
-      </a>
+      </RouterLink>
 
       <button
         class="menu-toggle"
@@ -21,48 +35,53 @@
         :class="{ open: menuOpen }"
       >
         <li>
-          <a href="#" @click="closeMenu">
+          <RouterLink
+            :to="{ name: 'home' }"
+            @click="closeMenu"
+          >
             Home
-          </a>
+          </RouterLink>
         </li>
 
         <li>
-          <a href="#projects" @click="closeMenu">
+          <RouterLink
+            :to="{ name: 'projects' }"
+            @click="closeMenu"
+          >
             Projects
-          </a>
+          </RouterLink>
         </li>
 
         <li>
-          <a href="#experiences" @click="closeMenu">
+          <RouterLink
+            :to="{ name: 'home', hash: '#experiences' }"
+            @click="closeMenu"
+          >
             Experience
-          </a>
+          </RouterLink>
         </li>
 
         <li>
-          <a href="#skills" @click="closeMenu">
+          <RouterLink
+            :to="{ name: 'home', hash: '#skills' }"
+            @click="closeMenu"
+          >
             Skills
-          </a>
+          </RouterLink>
         </li>
 
         <li>
-          <a href="#contact" @click="closeMenu">
+          <RouterLink
+            :to="{ name: 'home', hash: '#contact' }"
+            @click="closeMenu"
+          >
             Contact
-          </a>
+          </RouterLink>
         </li>
       </ul>
     </nav>
   </header>
 </template>
-
-<script setup>
-import { ref } from "vue";
-
-const menuOpen = ref(false);
-
-const closeMenu = () => {
-  menuOpen.value = false;
-};
-</script>
 
 <style scoped>
 header {
